@@ -1,0 +1,32 @@
+version: "3"
+services:
+  server:
+    image: node:14.17.2
+    working_dir: /server-postgresql
+    ports:
+      - 3000:3000
+    environment:
+      - PGUSER=elobo
+      - PGHOST=db
+      - PGPASSWORD=birdpass
+      - PGDATABASE=birdsdb
+      - PGPORT=5432
+    depends_on:
+      - db
+    volumes:
+      - type: bind
+        source: ./api
+        target: /server-postgresql
+    command: bash -c "npm install && npm start"
+
+  db:
+    image: postgres:latest
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+      - "./db:/docker-entrypoint-initdb.d/:ro"
+    environment:
+      - POSTGRES_DB=birdsdb
+      - POSTGRES_USER=elobo
+      - POSTGRES_PASSWORD=birdpass
+volumes:
+  dbdata:
