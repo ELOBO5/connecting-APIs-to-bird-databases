@@ -13,7 +13,7 @@
 ### Installation
 
 - Clone or download the repo
-- Open terminal and navigate to connecting-APIs-to-bird-databases folder
+- Open terminal and navigate to connecting-api-to-bird-database folder
 - Navigate to server-mongodb/server-postgresql folder and run npm install to install dependencies
 
 ### Usage
